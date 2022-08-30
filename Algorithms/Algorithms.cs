@@ -74,14 +74,13 @@ namespace Algorithms
                 for (var i = 0; i < array.Length; i++)
                 {
                     T first = array[i];
-                    List<T> remainder = array.ToList();
+
+                    List<T> remainder = new(array);
                     remainder.RemoveAt(i);
 
-                    foreach (T[] perm in GetPermutations(remainder.ToArray()))
+                    foreach (T[] permutation in GetPermutations(remainder.ToArray()))
                     {
-                        List<T> permutation = new() { first };
-                        permutation.AddRange(perm);
-                        result.Add(permutation.ToArray());
+                        result.Add(Enumerable.Repeat(first, 1).Concat(permutation).ToArray());
                     }
                 }
             }
