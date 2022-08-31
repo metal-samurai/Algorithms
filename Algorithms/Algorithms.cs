@@ -115,6 +115,126 @@ namespace Algorithms
 
             return permCount;
         }
+
+        /// <summary>
+        /// Given an array arr, find element pairs whose sum equal the second argument arg and return the sum of their indices.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        /// <remarks>You may use multiple pairs that have the same numeric elements but different indices. Each pair should use the lowest possible available indices. Once an element has been used it cannot be reused to pair with another element.</remarks>
+        public static int Pairwise(int[] array, int target)
+        {
+            int result = 0;
+            bool[] used = new bool[array.Length];
+            
+            Array.Fill(used, false);
+
+            for (var i = 0; i < array.Length - 1; i++)
+            {
+                for (var j = i + 1; j < array.Length; j++)
+                {
+                    if (!(used[i] || used[j]) && array[i] + array[j] == target)
+                    {
+                        result += i + j;
+                        used[i] = true;
+                        used[j] = true;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Write a function which takes an array of integers as input and returns an array of these integers in sorted order from least to greatest.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static int[] BubbleSort(int[] array)
+        {
+            int[] result = new int[array.Length];
+            bool swapped = true;
+
+            array.CopyTo(result, 0);
+
+            while (swapped)
+            {
+                swapped = false;
+
+                for (var i = 0; i < result.Length - 1; i++)
+                {
+                    if (result[i + 1] < result[i])
+                    {
+                        var temp = result[i];
+                        result[i] = result[i + 1];
+                        result[i + 1] = temp;
+
+                        swapped = true;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Write a function which takes an array of integers as input and returns an array of these integers in sorted order from least to greatest.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static int[] SelectionSort(int[] array)
+        {
+            int[] result = new int[array.Length];
+            List<int> remainder = new(array);
+
+            for (var i = 0; i < array.Length; i++)
+            {
+                var lowestValue = remainder[0];
+                var lowestIndex = 0;
+
+                for (var j = 1; j < remainder.Count; j++)
+                {
+                    if (remainder[j] < lowestValue)
+                    {
+                        lowestValue = remainder[j];
+                        lowestIndex = j;
+                    }
+                }
+
+                result[i] = lowestValue;
+                remainder.RemoveAt(lowestIndex);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Write a function which takes an array of integers as input and returns an array of these integers in sorted order from least to greatest.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static int[] InsertionSort(int[] array)
+        {
+            List<int> result = new(array.Length) { array[0] };
+
+            for (var i = 1; i < array.Length; i++)
+            {
+                bool inserted = false;
+                for (var j = 0; j < result.Count; j++)
+                {
+                    if (result[j] >= array[i])
+                    {
+                        result.Insert(j, array[i]);
+                        inserted = true;
+                        break;
+                    }
+                }
+
+                if (!inserted) result.Add(array[i]);
+            }
+
+            return result.ToArray();
+        }
     }
 
     

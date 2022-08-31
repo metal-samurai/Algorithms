@@ -108,5 +108,39 @@ namespace Algorithms.Tests
             Assert.AreEqual(0, Algorithms.PermAlone("aaab"));
             Assert.AreEqual(12, Algorithms.PermAlone("aaabb"));
         }
+
+        [TestMethod()]
+        public void PairwiseTest()
+        {
+            Assert.AreEqual(11, Algorithms.Pairwise(new int[] { 1, 4, 2, 3, 0, 5 }, 7));
+            Assert.AreEqual(1, Algorithms.Pairwise(new int[] { 1, 3, 2, 4 }, 4));
+            Assert.AreEqual(1, Algorithms.Pairwise(new int[] { 1, 1, 1 }, 2));
+            Assert.AreEqual(10, Algorithms.Pairwise(new int[] { 0, 0, 0, 0, 1, 1 }, 1));
+            Assert.AreEqual(0, Algorithms.Pairwise(Array.Empty<int>(), 100));
+        }
+
+        [TestMethod()]
+        public void BubbleSortTest()
+        {
+            var test = new int[] { 1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 123, 43, 2, 55, 1, 234, 92 };
+
+            Assert.IsTrue(Algorithms.BubbleSort(test).SequenceEqual(test.OrderBy(x => x)));
+        }
+
+        [TestMethod()]
+        public void SelectionSortTest()
+        {
+            var test = new int[] { 1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 123, 43, 2, 55, 1, 234, 92 };
+
+            Assert.IsTrue(Algorithms.SelectionSort(test).SequenceEqual(test.OrderBy(x => x)));
+        }
+
+        [TestMethod()]
+        public void InsertionSortTest()
+        {
+            var test = new int[] { 1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 123, 43, 2, 55, 1, 234, 92 };
+
+            Assert.IsTrue(Algorithms.InsertionSort(test).SequenceEqual(test.OrderBy(x => x)));
+        }
     }
 }
