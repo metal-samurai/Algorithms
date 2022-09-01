@@ -235,6 +235,30 @@ namespace Algorithms
 
             return result.ToArray();
         }
+
+        /// <summary>
+        /// Write a function which takes an array of integers as input and returns an array of these integers in sorted order from least to greatest.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static int[] QuickSort(int[] array)
+        {
+            if (array.Length < 2) return array;
+
+            List<int> left = new();
+            List<int> middle = new();
+            List<int> right = new();
+            int pivot = array[0];
+
+            foreach (int item in array)
+            {
+                if (item < pivot) left.Add(item);
+                else if (item > pivot) right.Add(item);
+                else middle.Add(item);
+            }
+            
+            return QuickSort(left.ToArray()).Concat(middle).Concat(QuickSort(right.ToArray())).ToArray();
+        }
     }
 
     

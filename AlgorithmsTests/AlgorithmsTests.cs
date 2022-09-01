@@ -142,5 +142,13 @@ namespace Algorithms.Tests
 
             Assert.IsTrue(Algorithms.InsertionSort(test).SequenceEqual(test.OrderBy(x => x)));
         }
+
+        [TestMethod()]
+        public void QuickSortTest()
+        {
+            var test = new int[] { 1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 123, 43, 2, 55, 1, 234, 92 };
+            
+            Assert.IsTrue(Algorithms.QuickSort(test).SequenceEqual(test.OrderBy(x => x)));
+        }
     }
 }
